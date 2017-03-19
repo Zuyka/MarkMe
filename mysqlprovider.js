@@ -7,7 +7,7 @@ var connection = new dbProvider('testnode', 'root', '0451', {
 
 
 //Код, создающий модели преподавателя, студента и группы
-var Teacher = connection.define('teacher',
+export var Teacher = connection.define('teacher',
 {
 	id: 
 	{
@@ -19,7 +19,7 @@ var Teacher = connection.define('teacher',
 	email: dbProvider.STRING
 });
 
-var Student = connection.define('student', {
+export var Student = connection.define('student', {
 	id:
 	{
 		type : dbProvider.STRING,
@@ -27,11 +27,17 @@ var Student = connection.define('student', {
 	},
 	name : dbProvider.STRING,
 	surname : dbProvider.STRING,
-	latitude : dbProvider.DOUBLE,
-	longtitude : dbProvider.DOUBLE,
+	latitude :{ 
+		type : dbProvider.DOUBLE,
+		defaultValue : 0.0
+	}, 
+	longtitude:{ 
+		type : dbProvider.DOUBLE,
+		defaultValue : 0.0
+	}
 });
 
-var Group  = connection.define('group',
+export var Group  = connection.define('group',
 {
 	name :
 	{
@@ -45,7 +51,7 @@ Student.belongsTo(Group, {as: 'group'});
 connection.sync();
 
 
-exports.getReportInfo = function(teacherId)
+export function getReportInfo(teacherId)
 {
 	return { surname: teacherId, email : teacherId + '@yandex.ru'}
 	 //заглушка, вообще функция должна возвращать email преподавателя и его имя по айдишнику
