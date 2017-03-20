@@ -1,11 +1,16 @@
 import express from 'express'
 import filesystem from 'fs'
-import reporter from './reporter.js'
 
+// Добавляем свои модули
+const reporter = require('./reporter.js');
+const dbAgent = require('./mysqlprovider.js');
+
+//Инициализируем приложение
 const app = express();
 
+//Запускаем прослушку порта
 app.listen(8080, () =>  {
-	console.log('Server is up!');
+	console.log('MarkMe is ready to work!');
 });
 
 //Админская страничка
@@ -60,6 +65,7 @@ app.put('/teachers/:id', (req,res) => {
 	//Здесь изменяем преподавателя
 })
 
+//Вспомогательный метод для выдачи статических html страничек
 function sendHtml(res, pathToHtml) {
 	filesystem.readFile(pathToHtml, (err,html) =>{
 		if (err){
@@ -67,7 +73,6 @@ function sendHtml(res, pathToHtml) {
 			res.send('<b style = "font-size:250%" > 404 : Not found </b>"');
 			return;
 		}
-		res.write(html);
-		res.end();
+		res.end(html);
 	});
 }

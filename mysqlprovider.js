@@ -1,9 +1,12 @@
 import dbProvider from 'sequelize'
 
-var connection = new dbProvider('testnode', 'root', '0451', {
-	host: 'localhost',
-	dialect: 'mysql'
-});
+
+var connectionInfo = require('./config.json').dataBaseParams;
+
+var connection = new dbProvider(connectionInfo.databaseName, 
+								connectionInfo.user,
+								connectionInfo.password, 
+								connectionInfo.localSettings);
 
 
 //Код, создающий модели преподавателя, студента и группы
@@ -56,5 +59,4 @@ export function getReportInfo(teacherId)
 	return { surname: teacherId, email : teacherId + '@yandex.ru'}
 	 //заглушка, вообще функция должна возвращать email преподавателя и его имя по айдишнику
 }
-
 

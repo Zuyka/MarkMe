@@ -1,0 +1,18 @@
+{
+    "mailCredentials": {
+        "service": "yandex",
+	    "auth": {
+		    "user": "markmenotify@yandex.ru",
+		    "pass": "andrianovTheBest"
+        }
+    },
+    "dataBaseParams" :{
+        "databaseName" : "testnode",
+        "user" : "root",
+        "password" :  "0451", 
+        "localSettings": {
+	        "host": "localhost",
+	        "dialect": "mysql" 
+            }
+    } 
+}
