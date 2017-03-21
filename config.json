@@ -6,6 +6,12 @@
 		    "pass": "andrianovTheBest"
         }
     },
+    "basicMailData": {
+	    "from":"\"MarkMe Reporting Service\" <markmenotify@yandex.ru>",
+	"to": "adress@domain.com",
+	"subject": "Group report",
+	"html": "<b style = \"font-size:150%\">Your sincerely, \nMarkMe Team</b>"
+    },
     "dataBaseParams" :{
         "databaseName" : "testnode",
         "user" : "root",

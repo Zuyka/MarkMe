@@ -3,17 +3,12 @@ import nodemailer from 'nodemailer';
 import filesystem from 'fs';
 const dbAgent = require('./mysqlprovider.js');
 
-var credentials = require('./config.json').mailCredentials;
+
+const cfg = require('./config.json');
+
+var credentials = cfg.mailCredentials;
+var maildata = cfg.basicMailData;
 const mailservice = nodemailer.createTransport(credentials);
-
-let maildata = 
-{
-	from: '"MarkMe Reporting Service" <markmenotify@yandex.ru>',
-	to: 'adress@domain.com',
-	subject: 'Group report',
-	html: '<b style = "font-size:150%">Your sincerely, \nMarkMe Team</b>'
-};
-
 
 
 export function sendReport(teacherId, group) {
@@ -28,6 +23,10 @@ export function sendReport(teacherId, group) {
 		if (err) {
 			success = false;
 			console.log(info); 
+		}
+		else { 
+			console.log('=== Log message ===');
+			console.log(Date() + "\nTeacher: " + teacherId + "\nGroup: " + group + "\nReport successfully sent!\n");
 		}
 	});
 	return success;

@@ -18,12 +18,13 @@ app.get('/', (req, res) => sendHtml(res,'./view/admin.html'));
 
 //Метод заказа преподавателем отчета
 app.get('/report/:id/:group', (req,res) => {
+	console.log("Order from " + req.params.id + " required");
 	if (reporter.sendReport(req.params.id,
 		req.params.group)) {
-		res.send("success");
+		res.send('<h style = "font-family:Helvetica; font-size:300%"> We have sent your report!</h>');
 	}
 	else {
-		res.send('Something happened, we can`t create your report');
+		res.send('<h style = "font-family:Helvetica; font-size:300%"> Error occured :( </h');
 	}
 });
 
